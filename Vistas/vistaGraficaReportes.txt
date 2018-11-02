@@ -1,0 +1,7 @@
+create view graficaReportes as
+select
+idImpresora as id,
+(SELECT nombre FROM impresoras where impresoras.id = idImpresora) as nombre,
+(SELECT nombre_agencia FROM impresoras where impresoras.id = idImpresora) as agencia,
+count(*) as reportes
+FROM _impresoras_reportes group by idimpresora

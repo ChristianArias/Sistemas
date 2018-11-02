@@ -1,0 +1,23 @@
+create view perifericos as
+SELECT
+id,
+nombre,
+serie,
+marca,
+modelo,
+area,(select _areas_nombre from _areas where _areas.id = area) as _area,
+agencia,(select _agencia_nombre from _agencia where _agencia.id = agencia) as _agencia,
+asignado,(select _usuario_nombre from _usuario where _usuario.id = asignado) as _usuario,
+comentarios,
+fechaCreacion,
+tipo,(select _dispositivos_nombre from _dispositivos where _dispositivos.id = tipo) as _dispositivos,
+ip,
+ethernet,
+wifi,
+usb,
+procesador,
+ram,
+discoduro,
+so
+
+FROM _perifericos;

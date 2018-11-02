@@ -1,0 +1,73 @@
+drop view equipos;
+create view equipos as
+SELECT
+_equipos.id,
+nombre,
+serie,
+marca,
+modelo,
+ip,
+area,(SELECT _areas_nombre FROM _areas WHERE _areas.id = area)as _areas,
+agencia,(SELECT _agencia_nombre FROM _agencia WHERE _agencia.id = agencia) as _agencia,
+tipo,(SELECT _dispositivos_nombre FROM _dispositivos WHERE _dispositivos.id = tipo) as _tipo,
+ethernet,
+wifi,
+comentarios,
+fechacreacion,
+antivirus,(SELECT _antivirus_nombre FROM _antivirus WHERE _antivirus.id = antivirus) as _antivirus,
+usuario,(SELECT _usuario_nombre FROM _usuario WHERE _usuario.id = usuario) as _usuario,
+ram,
+discoduro,
+procesador,
+so,
+arquitectura,
+nombrered,
+winoem,
+wininst,
+paq0,
+(SELECT nombre FROM _paqueterias WHERE _paqueterias.id = paq0)as _paq0,
+(SELECT codigoserial FROM _paqueterias WHERE _paqueterias.id = paq0)as _serial,
+paq1,
+(SELECT nombre FROM _paqueterias WHERE _paqueterias.id = paq1)as _paq1,
+(SELECT codigoserial FROM _paqueterias WHERE _paqueterias.id = paq1)as _serial1,
+paq2,
+(SELECT nombre FROM _paqueterias WHERE _paqueterias.id = paq2)as _paq2,
+(SELECT codigoserial FROM _paqueterias WHERE _paqueterias.id = paq2)as _serial2,
+archLic,
+factura,
+responsiva,
+activo
+FROM _equipos
+ORDER BY INET_ATON(ip);
+
+---------------------------------------------
+
+create view equipos as
+SELECT _equipos.id,
+nombre,
+serie,
+marca,
+modelo,
+ip,
+_areas_nombre as area,
+_agencia_nombre as agencia,
+_dispositivos_nombre as tipo,
+ethernet,
+wifi,
+comentarios,
+_equipos.fechacreacion as creacion,
+_antivirus_nombre as antivirus,
+_usuario_nombre as usuario,
+ram,
+discoduro,
+procesador,
+so,
+nombrered,
+arquitectura
+ FROM _equipos,_agencia,_areas,_dispositivos,_antivirus,_usuario
+where _areas.id = _equipos.area
+and  _agencia.id = agencia
+and _dispositivos.id = tipo
+and _antivirus.id = antivirus
+and _usuario.id = usuario 
+ORDER BY INET_ATON(ip)

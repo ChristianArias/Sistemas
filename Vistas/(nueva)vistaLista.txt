@@ -1,0 +1,86 @@
+CREATE VIEW lista AS
+
+SELECT 
+_impresoras.id as id,
+nombre,
+ip,
+area,(SELECT _areas_nombre FROM _areas WHERE _areas.id = area) as _area,
+tipo,(SELECT _dispositivos_nombre FROM _dispositivos WHERE _dispositivos.id = tipo) as _tipo,
+agencia,(SELECT _agencia_nombre FROM _agencia WHERE _agencia.id = agencia) as _agencia,
+"" as antivirus,
+"" as usuario,
+"" as puesto
+FROM _impresoras
+
+union
+
+SELECT
+_switch.id as id,
+nombre,
+ip,
+area,(SELECT _areas_nombre FROM _areas WHERE _areas.id = area) as _area,
+tipo,(SELECT _dispositivos_nombre FROM _dispositivos WHERE _dispositivos.id = tipo) as _tipo,
+agencia,(SELECT _agencia_nombre FROM _agencia WHERE _agencia.id = agencia) as _agencia,
+"" as antivirus,
+"" as usuario,
+"" as puesto
+FROM _switch
+
+union
+
+
+SELECT
+id,
+nombre,
+ip,
+area,(select _areas_nombre from _areas where _areas.id = area) as _area,
+tipo,(select _dispositivos_nombre from _dispositivos where _dispositivos.id = tipo) as _tipo,
+agencia,(select _agencia_nombre from _agencia where _agencia.id = agencia) as _agencia,
+'' as antivirus,
+(select _usuario_nombre from _usuario where _usuario.id = asignado) as usuario,
+(select puesto from _usuario where _usuario.id = asignado) as puesto
+FROM _perifericos
+
+union
+
+SELECT
+_atas.id as id,
+nombre,
+ip,
+area,(SELECT _areas_nombre FROM _areas WHERE _areas.id = area) as _area,
+tipo,(SELECT _dispositivos_nombre FROM _dispositivos WHERE _dispositivos.id = tipo) as _tipo,
+agencia,(SELECT _agencia_nombre FROM _agencia WHERE _agencia.id = agencia) as _agencia,
+"" as antivirus,
+"" as usuario,
+"" as puesto
+FROM _atas
+
+union
+
+SELECT
+_equipos.id,
+nombre,
+ip,
+area,(SELECT _areas_nombre FROM _areas WHERE _areas.id = area) as _area,
+tipo,(SELECT _dispositivos_nombre FROM _dispositivos WHERE _dispositivos.id = tipo) as _tipo,
+agencia,(SELECT _agencia_nombre FROM _agencia WHERE _agencia.id = agencia) as _agencia,
+(SELECT _antivirus_nombre FROM _antivirus WHERE _antivirus.id = antivirus) as _antivirus,
+(SELECT _usuario_nombre FROM _usuario WHERE _usuario.id = usuario) as _usuario,
+(SELECT puesto FROM _usuario WHERE _usuario.id = usuario) as puesto
+FROM _equipos
+
+union
+
+SELECT
+_telefonosip.id,
+"" as nombre,
+ip,area,(SELECT _areas_nombre FROM _areas WHERE _areas.id = area) as _area,
+tipo,(SELECT _dispositivos_nombre FROM _dispositivos WHERE _dispositivos.id = tipo) as _tipo,
+agencia,(SELECT _agencia_nombre FROM _agencia WHERE _agencia.id = agencia) as _agencia,
+"" as antivirus,
+"" as usuario,
+"" as puesto
+FROM _telefonosip
+
+
+ORDER BY INET_ATON(ip)

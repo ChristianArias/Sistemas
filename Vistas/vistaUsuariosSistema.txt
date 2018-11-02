@@ -1,0 +1,24 @@
+CREATE VIEW usuariosSistema AS
+select
+	usuarios_id as id,
+	usuarios_nombre as nombre,
+	usuarios_apellido as apellido,
+	usuarios_usuario as usuario,
+	usuarios_contrasena as contrasena,
+	usuarios_bloqueado as bloqueado,
+	usuarios_imagen as imagen,
+	usuarios_correo as correo,
+	usuarios_telefono as telefono,
+	usuarios_movil as movil,
+	usuarios_comentarios as comentarios,
+	usuarios_activohasta as activoHasta,
+	usuarios_perfil as perfilInicio,
+	(SELECT tipo FROM _tipo WHERE _tipo.id = usuarios_perfil) as tipo,
+	(SELECT pagina FROM _tipo WHERE _tipo.id = usuarios_perfil) as pagina,
+	usuarios_permisos as permisos,
+	(SELECT nombre FROM _permisos WHERE _permisos.id = usuarios_permisos) as nombrePermiso,
+	(SELECT eliminar FROM _permisos WHERE _permisos.id = usuarios_permisos) as eliminar,
+	(SELECT editar FROM _permisos WHERE _permisos.id = usuarios_permisos) as editar,
+	(SELECT agregar FROM _permisos WHERE _permisos.id = usuarios_permisos) as agregar,
+	(SELECT imagen FROM _configuraciones_fondousuario WHERE _configuraciones_fondousuario.id = usuarios_id) as fondo
+from _usuarios;

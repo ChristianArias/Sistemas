@@ -1,0 +1,20 @@
+create view impresoras AS
+select
+id,
+nombre,
+serie,
+marca,
+modelo,
+ip,
+area,(SELECT _areas_nombre FROM _areas WHERE id = area ) as nombre_area,
+agencia,(SELECT _agencia_nombre FROM _agencia WHERE id = agencia) as nombre_agencia,
+ethernet,
+wifi,
+usb,
+comentarios,
+tipo,(SELECT _dispositivos_nombre FROM _dispositivos WHERE id = tipo) as nombre_tipo,
+usuario,
+contraseña,
+nombrered,
+(SELECT count(*) FROM _impresoras_reportes WHERE _impresoras.id = _impresoras_reportes.idimpresora) as reportes
+from _impresoras;

@@ -1,0 +1,9 @@
+create view libreta as
+SELECT
+nombreCompleto,organizacion,tipo1,numero1,tipo2,numero2,notas,libreta,
+(select nombreLibreta from _libreta where id = libreta) as nombreLibreta,
+idUsuario,
+(select usuarios_nombre from _usuarios WHERE usuarios_id = idUsuario) as nombreUsuario,
+esGlobal FROM _telefonos
+
+INSERT INTO _libreta (idContacto,idUsuario,nombreLibreta,comentarios) VALUES (0,0,"General","Agenda general de contactos");

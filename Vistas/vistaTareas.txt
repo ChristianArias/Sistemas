@@ -1,0 +1,7 @@
+create view tareas as
+SELECT id,nombre,descripcion,esGlobal,idUsuarioCreo,
+fechaCreacion,horaCreacion,fechaLimite,
+(SELECT usuarios_nombre FROM _usuarios WHERE usuarios_id = idUsuarioCreo) as UsuarioCreo,
+(SELECT usuarios_nombre FROM _usuarios WHERE usuarios_id = idUsuarioFinalizo) as idUsuarioFinalizo,
+realizada
+FROM _tareas;

@@ -1,0 +1,14 @@
+
+CREATE VIEW usuariosremoto AS
+SELECT
+	id,usuario,contrasena,estatus,
+	nombre,(SELECT _usuario_nombre FROM _usuario WHERE _usuario.id = nombre) as nombreUsuario,
+	area,(SELECT _areas_nombre FROM _areas WHERE _areas.id = area) as areas, 
+	principal,
+  (SELECT nombre FROM _equipos WHERE _equipos.id = principal) as np,
+  (SELECT ip FROM _equipos WHERE _equipos.id = principal) as np_ip,
+	secundario,
+  (SELECT nombre FROM _equipos WHERE _equipos.id = secundario) as ns,
+  (SELECT ip FROM _equipos WHERE _equipos.id = secundario) as ns_ip,
+	agencia,(SELECT _agencia_nombre FROM _agencia WHERE _agencia.id = agencia) as 	agencias,fechaAlta,horaAlta,comentario
+	FROM _usuariosRemoto

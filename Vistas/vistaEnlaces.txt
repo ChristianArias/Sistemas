@@ -1,0 +1,11 @@
+CREATE VIEW enlaces AS
+SELECT
+id,
+servicio,
+agencia,(SELECT _agencia_nombre FROM _agencia WHERE id = agencia) as _agencia,
+modelo,
+serie,
+cuenta,
+area,
+comentarios
+FROM _enlaces;

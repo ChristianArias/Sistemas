@@ -1,0 +1,12 @@
+CREATE view telefonosIP as
+SELECT
+id,mac,ip,usuarioAcceso,contrasenaAcceso,
+ext1,usuario1,(SELECT _usuario_nombre FROM _usuario WHERE usuario1 = _usuario.id) as user1,
+ext2,usuario2,(SELECT _usuario_nombre FROM _usuario WHERE usuario2 = _usuario.id) as user2,
+ext3,usuario3,(SELECT _usuario_nombre FROM _usuario WHERE usuario3 = _usuario.id) as user3,
+ext4,usuario4,(SELECT _usuario_nombre FROM _usuario WHERE usuario4 = _usuario.id) as user4,
+area,(SELECT _areas_nombre FROM _areas WHERE area = _areas.id)as _areas,
+agencia,(SELECT _agencia_nombre FROM _agencia WHERE agencia = _agencia.id)as _agencia,
+tipo,(SELECT _dispositivos_nombre FROM _dispositivos WHERE tipo = _dispositivos.id)as _tipo,
+comentarios
+FROM _telefonosip ORDER BY INET_ATON(ip)

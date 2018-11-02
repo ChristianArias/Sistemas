@@ -1,0 +1,8 @@
+create view dispositivos as
+SELECT
+id,
+_dispositivos_nombre,
+fecha_creacion,
+comentario,
+(SELECT count(*) FROM _equipos WHERE tipo = _dispositivos.id) as cantidad
+FROM _dispositivos;

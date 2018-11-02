@@ -1,0 +1,14 @@
+drop view puertosSwitch;
+create view puertosSwitch as
+SELECT _switch.nombre,idPuerto,valor,
+        case _switch_valores.tipo
+        when 0 then 'Puerto'
+        when 1 then 'Fibra'
+        when 2 then 'Gigabite'
+        end as tipos,_agencia_nombre
+FROM _switch,_switch_valores,_agencia,_dispositivos,_areas
+where
+_switch.id = _switch_valores.idSwitch AND
+_switch.agencia = _agencia.id AND
+_switch.tipo = _dispositivos.id AND
+_switch.area = _areas.id;

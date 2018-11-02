@@ -1,0 +1,15 @@
+CREATE VIEW usuario as
+SELECT
+id,
+_usuario_nombre as usuario,
+puesto,
+comentario,
+area,
+(SELECT _areas_nombre FROM _areas WHERE _areas.id = area) as nombreArea,
+agencia,(SELECT _agencia_nombre FROM _agencia WHERE _agencia.id = agencia) as _agencia,
+correo,
+novendedor,
+fi,
+(SELECT _usuario_nombre FROM _usuario WHERE id = fi) fiasignado
+	FROM
+_usuario

@@ -1,0 +1,14 @@
+CREATE VIEW antivirus AS
+SELECT
+id,
+_antivirus_nombre as nombre,
+comentario,
+fecha_creacion as creado,
+cantlicencias,
+(SELECT count(*) from _equipos WHERE _antivirus.id = antivirus) as ocupadas,
+(cantlicencias - (SELECT count(*) from _equipos WHERE _antivirus.id = antivirus)) as libres,
+tipolicencias,
+fechadesde,
+fechahasta,
+DATEDIFF(fechahasta,now()) as dias
+from _antivirus;

@@ -1,0 +1,72 @@
+create view extenciones as
+SELECT ext1 as Extencion,_usuario_nombre as Nombre,_areas_nombre as area FROM _atas,_usuario,_areas
+where _usuario.id = usuario1 AND _usuario.area = _areas.id
+union
+SELECT ext2 as Extencion,_usuario_nombre as Nombre,_areas_nombre as area FROM _atas,_usuario,_areas
+where _usuario.id = usuario2 AND _usuario.area = _areas.id;
+
+---------------------------------------------------------------------------------------------------------
+CREATE VIEW extencioneslista AS
+SELECT
+id,
+ip,
+(SELECT _usuario_nombre FROM _usuario WHERE _usuario.id = usuario1) as nombre,
+(SELECT _areas_nombre FROM _areas WHERE _areas.id = (SELECT area FROM _usuario WHERE _usuario.id = usuario1)) as area,
+(SELECT _agencia_nombre FROM _agencia WHERE _agencia.id = (SELECT agencia FROM _usuario WHERE _usuario.id = usuario1)) as agencia,
+ext1
+FROM _atas WHERE _atas.ext1 != ""
+
+UNION
+
+SELECT
+id,
+ip,
+(SELECT _usuario_nombre FROM _usuario WHERE _usuario.id = usuario2) as nombre,
+(SELECT _areas_nombre FROM _areas WHERE _areas.id = (SELECT area FROM _usuario WHERE _usuario.id = usuario2)) as area,
+(SELECT _agencia_nombre FROM _agencia WHERE _agencia.id = (SELECT agencia FROM _usuario WHERE _usuario.id = usuario2)) as agencia,
+ext2
+FROM _atas WHERE _atas.ext2 != ""
+
+union
+
+SELECT
+id,
+ip,
+(SELECT _usuario_nombre FROM _usuario WHERE _usuario.id = usuario1) as nombre,
+(SELECT _areas_nombre FROM _areas WHERE _areas.id = (SELECT area FROM _usuario WHERE _usuario.id = usuario1)) as area,
+(SELECT _agencia_nombre FROM _agencia WHERE _agencia.id = (SELECT agencia FROM _usuario WHERE _usuario.id = usuario1)) as agencia,
+ext1
+FROM _telefonosip WHERE _telefonosip.ext1 != ""
+
+UNION
+
+SELECT
+id,
+ip,
+(SELECT _usuario_nombre FROM _usuario WHERE _usuario.id = usuario2) as nombre,
+(SELECT _areas_nombre FROM _areas WHERE _areas.id = (SELECT area FROM _usuario WHERE _usuario.id = usuario2)) as area,
+(SELECT _agencia_nombre FROM _agencia WHERE _agencia.id = (SELECT agencia FROM _usuario WHERE _usuario.id = usuario2)) as agencia,
+ext2
+FROM _telefonosip WHERE _telefonosip.ext2 != ""
+
+union
+
+SELECT
+id,
+ip,
+(SELECT _usuario_nombre FROM _usuario WHERE _usuario.id = usuario3) as nombre,
+(SELECT _areas_nombre FROM _areas WHERE _areas.id = (SELECT area FROM _usuario WHERE _usuario.id = usuario3)) as area,
+(SELECT _agencia_nombre FROM _agencia WHERE _agencia.id = (SELECT agencia FROM _usuario WHERE _usuario.id = usuario3)) as agencia,
+ext3
+FROM _telefonosip WHERE _telefonosip.ext3 != ""
+
+UNION
+
+SELECT
+id,
+ip,
+(SELECT _usuario_nombre FROM _usuario WHERE _usuario.id = usuario4) as nombre,
+(SELECT _areas_nombre FROM _areas WHERE _areas.id = (SELECT area FROM _usuario WHERE _usuario.id = usuario4)) as area,
+(SELECT _agencia_nombre FROM _agencia WHERE _agencia.id = (SELECT agencia FROM _usuario WHERE _usuario.id = usuario4)) as agencia,
+ext4
+FROM _telefonosip WHERE _telefonosip.ext4 != "";

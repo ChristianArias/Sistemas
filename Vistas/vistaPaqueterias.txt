@@ -1,0 +1,8 @@
+CREATE VIEW paqueterias AS 
+select
+id,
+nombre,
+codigoserial,
+licencias,
+(SELECT count(*) from _equipos WHERE _paqueterias.id = paq0 or _paqueterias.id = paq1 or _paqueterias.id = paq2) as ocupadas
+FROM _paqueterias;

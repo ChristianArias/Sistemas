@@ -1,0 +1,12 @@
+CREATE VIEW equipos_reportes AS
+SELECT
+id,
+idUsr,(SELECT _usuario_nombre FROM _usuario WHERE id = idUsr) as usuario,
+idEquipo,(SELECT nombre FROM _equipos WHERE id = idEquipo) as equipo,
+fecha,
+hora,
+if(status=0,"Pendiente","Resuelto") as estatus,
+asunto,
+evento
+FROM
+_equipos_reportes

@@ -1,0 +1,22 @@
+DROP VIEW eventoscalendario ;
+CREATE VIEW eventoscalendario AS
+SELECT
+id as idevento,
+tipo,
+usuario,
+(SELECT usuarios_correo FROM _usuarios WHERE usuarios_id = usuario) as correousuario,
+titulo,
+ubicacion,
+inicio,
+convert(inicio,date) as finicio,
+convert(inicio,time) as hinicio,
+fin,
+convert(fin,date) as ffin,
+convert(fin,time) as hfin,
+comentarios,
+creador,
+(SELECT concat(usuarios_nombre," ",usuarios_apellido) FROM _usuarios WHERE usuarios_id = creador) as nombrecreador,
+(SELECT usuarios_correo FROM _usuarios WHERE usuarios_id = creador) as correocreador,
+creacion,
+editable
+FROM _eventoscalendariodata,_eventoscalendario WHERE id = evento;

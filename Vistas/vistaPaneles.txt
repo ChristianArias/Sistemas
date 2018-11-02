@@ -1,0 +1,12 @@
+CREATE VIEW paneles AS 
+SELECT
+id,
+nombre,
+puertos,
+brincos,
+agencia,
+(SELECT _agencia_nombre FROM _agencia WHERE _agencia.id = agencia) as _agencia,
+area,
+(SELECT _areas_nombre FROM _areas WHERE _areas.id = area) as _area,
+comentarios
+FROM _paneles;

@@ -1,0 +1,8 @@
+CREATE VIEW switch AS
+SELECT
+	id,nombre,brincos,puertos,puertosfibra,puertoscascadeo,serie,marca,modelo,ip,
+	area,(SELECT _areas_nombre FROM _areas WHERE _areas.id = area) as areas,
+	agencia,(SELECT _agencia_nombre FROM _agencia WHERE _agencia.id = agencia) as agencias,
+  tipo,(SELECT _dispositivos_nombre FROM _dispositivos WHERE _dispositivos.id = tipo) as tipos,
+	potenciatransmision,usuario,contrasena,comentarios
+	 FROM _switch ORDER BY INET_ATON(ip)

@@ -1,0 +1,13 @@
+CREATE VIEW reportes_impresoras AS
+select
+id,
+idimpresora,
+(SELECT nombre FROM impresoras where impresoras.id = idimpresora) as nombre,
+(SELECT serie FROM impresoras where impresoras.id = idimpresora) as serie,
+(SELECT nombre_area FROM impresoras where impresoras.id = idimpresora) as area,
+(SELECT nombre_agencia FROM impresoras where impresoras.id = idimpresora) as agencia,
+idreporte,
+fecha,
+fallareportada,
+trabajoefectuado
+from _impresoras_reportes;

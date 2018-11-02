@@ -1,0 +1,57 @@
+CREATE VIEW extencionesLista AS
+SELECT usuario1 as id,(SELECT _usuario_nombre FROM _usuario WHERE usuario1 = _usuario.id) as usuario,ext1 as extencion FROM _atas
+union
+SELECT usuario2 as id,(SELECT _usuario_nombre FROM _usuario WHERE usuario2 = _usuario.id) as usuario,ext2 as extencion FROM _atas
+union
+SELECT usuario1 as id,(SELECT _usuario_nombre FROM _usuario WHERE usuario1 = _usuario.id) as usuario,ext1 as extencion from _telefonosip
+union
+SELECT usuario2 as id,(SELECT _usuario_nombre FROM _usuario WHERE usuario2 = _usuario.id) as usuario,ext2 as extencion from _telefonosip
+union
+SELECT usuario3 as id,(SELECT _usuario_nombre FROM _usuario WHERE usuario3 = _usuario.id) as usuario,ext3 as extencion from _telefonosip
+union
+SELECT usuario4 as id,(SELECT _usuario_nombre FROM _usuario WHERE usuario4 = _usuario.id) as usuario,ext4 as extencion from _telefonosip
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+CREATE VIEW extencionesLista AS
+
+SELECT usuario1 as id,
+if(ISNULL((SELECT _usuario_nombre FROM _usuario WHERE usuario1 = _usuario.id)),"",(SELECT _usuario_nombre FROM _usuario WHERE usuario1 = _usuario.id)) as usuario,
+ext1 as extencion,
+(SELECT _areas_nombre FROM _areas WHERE id = (SELECT area FROM _usuario WHERE _usuario.id = usuario1)) as area 
+FROM _atas
+
+union
+
+SELECT usuario2 as id,
+if(ISNULL((SELECT _usuario_nombre FROM _usuario WHERE usuario2 = _usuario.id)),"",(SELECT _usuario_nombre FROM _usuario WHERE usuario2 = _usuario.id)) as usuario,
+ext2 as extencion,
+(SELECT _areas_nombre FROM _areas WHERE id = (SELECT area FROM _usuario WHERE _usuario.id = usuario2)) as area 
+FROM _atas
+
+union
+
+SELECT usuario1 as id,
+if(ISNULL((SELECT _usuario_nombre FROM _usuario WHERE usuario1 = _usuario.id)),"",(SELECT _usuario_nombre FROM _usuario WHERE usuario1 = _usuario.id)) as usuario,
+ext1 as extencion FROM _telefonosip
+
+union
+
+SELECT usuario2 as id,
+if(ISNULL((SELECT _usuario_nombre FROM _usuario WHERE usuario2 = _usuario.id)),"",(SELECT _usuario_nombre FROM _usuario WHERE usuario2 = _usuario.id)) as usuario,
+ext2 as extencion FROM _telefonosip
+
+union
+
+SELECT usuario3 as id,
+if(ISNULL((SELECT _usuario_nombre FROM _usuario WHERE usuario3 = _usuario.id)),"",(SELECT _usuario_nombre FROM _usuario WHERE usuario3 = _usuario.id)) as usuario,
+ext3 as extencion FROM _telefonosip
+
+union
+
+SELECT usuario4 as id,
+if(ISNULL((SELECT _usuario_nombre FROM _usuario WHERE usuario4 = _usuario.id)),"",(SELECT _usuario_nombre FROM _usuario WHERE usuario4 = _usuario.id)) as usuario,
+ext4 as extencion FROM _telefonosip
+
+ORDER BY extencion

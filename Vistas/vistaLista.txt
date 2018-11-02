@@ -1,0 +1,49 @@
+create view lista as
+
+select _impresoras.id,nombre,ip,_areas_nombre,_dispositivos_nombre as tipo,_agencia_nombre as agencia,'' as antivirus,'' as usuario,'' as puesto
+from _impresoras,_areas,_dispositivos,_agencia
+WHERE _impresoras.area = _areas.id
+AND _impresoras.tipo = _dispositivos.id
+AND _impresoras.agencia = _agencia.id
+
+union
+
+select _switch.id,nombre,ip,_areas_nombre,_dispositivos_nombre as tipo,_agencia_nombre as agencia,'' as antivirus,'' as usuario,'' as puesto
+from _switch,_areas,_dispositivos,_agencia
+WHERE _switch.area = _areas.id
+AND _switch.tipo = _dispositivos.id
+AND _switch.agencia = _agencia.id
+
+union
+
+select _atas.id,nombre,ip,_areas_nombre,_dispositivos_nombre as tipo,_agencia_nombre as agencia,'' as antivirus,'' as usuario,'' as puesto
+from _atas,_areas,_dispositivos,_agencia
+WHERE _atas.area = _areas.id
+AND _atas.tipo = _dispositivos.id
+AND _atas.agencia = _agencia.id
+
+union
+
+SELECT * FROM lista;
+SELECT
+id,
+nombre,
+ip,
+area,(select _areas_nombre from _areas where _areas.id = area) as _area,
+tipo,(select _dispositivos_nombre from _dispositivos where _dispositivos.id = tipo) as _tipo,
+agencia,(select _agencia_nombre from _agencia where _agencia.id = agencia) as _agencia,
+'' as antivirus,
+(select _usuario_nombre from _usuario where _usuario.id = asignado) as usuario,
+(select puesto from _usuario where _usuario.id = asignado) as puesto
+FROM _perifericos
+
+union
+
+select _equipos.id,nombre,ip,_areas_nombre,_dispositivos_nombre as tipo,_agencia_nombre as agencia,_antivirus_nombre,_usuario_nombre,puesto
+from _equipos,_areas,_dispositivos,_antivirus,_usuario,_agencia
+WHERE _equipos.area = _areas.id
+AND _equipos.tipo = _dispositivos.id
+AND _antivirus.id = _equipos.antivirus
+AND _usuario.id = _equipos.usuario
+AND _equipos.agencia = _agencia.id
+ORDER BY INET_ATON(ip)

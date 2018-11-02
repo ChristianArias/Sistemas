@@ -1,0 +1,29 @@
+.redondo{
+	border-radius: 5px 5px 5px 5px;
+	-moz-border-radius: 5px 5px 5px 5px;
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border: 1px groove #9c9c9c;
+}
+.sombraExt{
+	-webkit-box-shadow: -11px 7px 41px -16px rgba(0,0,0,1);
+	-moz-box-shadow: -11px 7px 41px -16px rgba(0,0,0,1);
+	box-shadow: -11px 7px 41px -16px rgba(0,0,0,1);
+}
+a{
+	color: black;
+	text-decoration: none;
+}
+a:hover{
+	color: red;
+}
+.link:hover{
+	color: red;
+}
+.elemento{
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-o-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}

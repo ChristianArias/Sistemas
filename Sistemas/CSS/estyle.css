@@ -1,0 +1,75 @@
+	#divTitulo{
+		padding:5px;
+		background-color:lightgray;
+		line-height:1.4; 
+		width:100%; 
+		margin: 0 auto; 
+		text-align:center;	
+	}
+
+	#d1{ 
+    	width: 98%; 
+    	margin: 0 auto; 
+    	position: absolute; 
+    	background-color: #000000; 
+	}
+	
+	body {
+		font-family: "Lato", 
+		sans-serif;
+		background-color:white;
+	}
+	
+	#div1 {
+    	overflow:auto;
+    	height:100%;
+    	width:100%;
+	}
+	#div1 table {
+    	width:100%;
+    	background-color:white;
+		border:thin;
+	}
+
+/*-----------------------------------------------*/
+
+	div.tab {
+    	overflow: hidden;
+    	background-color: #f1f1f1;
+	}
+	
+	div.tab button {
+    	background-color: inherit;
+   		float: left;
+    	border: none;
+    	outline: none;
+    	cursor: pointer;
+    	padding: 8px 10px;
+    	transition: 0.3s;
+    	font-size: 10px;
+	}
+
+	div.tab button:hover {
+    	background-color: #ddd;
+	}
+
+	div.tab button.active {
+    	background-color: #ccc;
+	}
+
+	a {
+		text-decoration: none;
+		color: black;
+	}
+
+	.tabcontent {
+    	display: none;
+    	padding: 3px 6px;
+    	border-top: none;
+	}
+	
+	.main {
+  		font-family: 	Arial, Verdana, sans-serif;
+		color:		black;
+		font-size:	8px;
+	}

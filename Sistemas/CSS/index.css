@@ -1,0 +1,77 @@
+body{
+	font-size: 25px;
+}
+table{
+	position: absolute;
+	width: 40%;
+	top: 56%;
+	left: 30%;	
+}
+.size{
+	width: 100%;
+}
+.center{
+	align-content: center;
+	text-align: center;
+}
+table input{
+	width: 60%;
+}
+button{
+	color: black;
+}
+#logo{
+	position: absolute;
+	top: 10%;
+	left: 35%;
+	width: 30%;
+}
+/*@media screen and (max-width:800px){
+	body{
+		font-size: 20px;
+	}
+	table{
+		position: absolute;
+		top: 20%;
+		left: 10%;
+		width: 80%;
+		border: 1px solid red;
+	}
+}*/
+@media screen and (max-width:1000px){
+	body{
+		font-size: 60px;
+	}
+	#logo{
+		position: absolute;
+		top: 10%;
+		left: 5%;
+		width: 90%;
+	}
+	table{
+		position: absolute;
+		width: 80%;
+		top: 46%;
+		left: 10%;	
+	}
+	table input{
+		font-size: 50px;
+	}
+	button{
+		font-size: 50px;
+	}
+}
+@media screen and (max-width:800px){
+	#logo{
+		position: absolute;
+		top: 2%;
+		left: 25%;
+		width: 50%;
+	}
+	table{
+		position: absolute;
+		width: 80%;
+		top: 46%;
+		left: 10%;	
+	}
+}
